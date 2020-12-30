@@ -16,5 +16,8 @@
     <app-component></app-component>
   </div>
   <script src="{{ asset('js/app.js') }}"></script>
+  <!-- Menu Toggle Script -->
+
+
 </body>
 </html>
