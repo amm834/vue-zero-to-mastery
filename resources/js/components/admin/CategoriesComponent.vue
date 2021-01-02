@@ -47,13 +47,13 @@
      </div>
     </form>
    </b-modal>
-      <!-- Create Modal End -->
-<!-- Edit Modal Start -->
+   <!-- Create Modal End -->
+   <!-- Edit Modal Start -->
    <b-modal ref="edit-modal" hide-footer title="Edit Category">
     <!-- Category Create Form -->
     <form @submit.prevent="updateCategory">
      <!-- Display Edit Preview Image -->
-     <img :src="`${storagePath}/storage/${editCategoryData.image}`" alt="404 not found!" ref="displayImage"  class="img-fluid my-3" />
+     <img :src="`${storagePath}/storage/${editCategoryData.image}`" alt="404 not found!" ref="displayImage" class="img-fluid my-3" />
 
      <!-- Title -->
      <div class="mb-3">
@@ -88,7 +88,7 @@
     </form>
    </b-modal>
   </div>
-<!-- Edit Modal End -->
+  <!-- Edit Modal End -->
 
   <!-- Responsive Table -->
 
@@ -148,7 +148,7 @@
     },
     errors: '',
     storagePath: `${serverPath}`,
-    editCategoryData:'',
+    editCategoryData: '',
    }
   },
   methods: {
@@ -236,7 +236,7 @@
    },
    /* Delete Category */
    deleteCategory(id) {
-    
+
     Swal.fire({
      title: 'Are You Sure To Delete?',
      showCancelButton: true,
@@ -253,26 +253,33 @@
     })
    },
    /* Edit Category */
-   editCategory(category){
+   editCategory(category) {
     this.showEditModal();
-    this.editCategoryData = {...category};
+    this.editCategoryData = {
+     ...category
+    };
    },
-   updateCategory(){
+   updateCategory() {
     this.hideModal();
     let formdata = new FormData();
-    formdata.append('title',this.editCategoryData.title);
-    formdata.append('image',this.editCategoryData.image);
-    formdata.append('_method','put');
-    axios.post(`${baseURL}/categories/${this.editCategoryData.id}`,formdata)
-    .then(res=>{
+    formdata.append('title',
+     this.editCategoryData.title);
+    formdata.append('image',
+     this.editCategoryData.image);
+    formdata.append('_method',
+     'put');
+    axios.post(`${baseURL}/categories/${this.editCategoryData.id}`,
+     formdata)
+    .then(res=> {
+     this.hideModal();
      this.hideEditModal();
      this.showCategories();
     })
-    .catch(err=>{
-     console.log(err.response.data)
+    .catch(err=> {
+     this.errors = err.response.data.errors;
     })
    }
-  
+
   },
   created() {
    this.showCategories();
