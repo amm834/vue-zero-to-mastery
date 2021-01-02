@@ -5,16 +5,15 @@ import CategoriesComponent from './components/admin/CategoriesComponent';
 
 Vue.use(VueRouter);
 
-const routes = [
-  {
-  path: '/categories',
-  component: CategoriesComponent
+const routes = [{
+ path: '/categories',
+ component: CategoriesComponent
 },
 ];
 
 const router = new VueRouter({
-  routes ,
-  mode:'history'
+ routes,
+ mode: 'history'
 });
 
 export default router;
