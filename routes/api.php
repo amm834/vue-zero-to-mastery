@@ -2,12 +2,19 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
 use  App\Http\Controllers\CategoryController;
+use  App\Http\Controllers\AuthController;
 
+/*
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+*/
 
-Route::resource('/categories',CategoryController::class);
-//Route::put('/categories/{id}',[CategoryController::class,'update'])->where('id','[0-9]+');
+Route::group([
+ 'prefix' => 'auth'
+], function() {
+ Route::post('/users', [AuthController::class, 'register']);
+});
+
+Route::apiResource('/categories', CategoryController::class);
