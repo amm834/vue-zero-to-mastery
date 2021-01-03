@@ -14,7 +14,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group([
  'prefix' => 'auth'
 ], function() {
- Route::post('/users', [AuthController::class, 'register']);
+ Route::post('/register', [AuthController::class, 'register']);
+ Route::post('/login', [AuthController::class, 'login']);
+ Route::middleware('auth:api')->get('/logout', [AuthController::class, 'logout']);
+
 });
 
 Route::apiResource('/categories', CategoryController::class);
