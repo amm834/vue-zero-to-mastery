@@ -2,6 +2,7 @@ const vm = Vue.createApp({
     data() {
         return {
             firstName: "John",
+            middlename: "",
             lastName: "Doe",
             url: "https://facebook.com",
             raw_data: "<h1>Hello</h1>",
@@ -10,7 +11,7 @@ const vm = Vue.createApp({
     },
     methods: {
         fullname() {
-            return `${this.firstName} ${this.lastName}`;
+            return `${this.firstName} ${this.middlename} ${this.lastName}`;
         },
         add() {
             this.count = this.count + 1;
@@ -22,6 +23,9 @@ const vm = Vue.createApp({
         triggerMe(msg, event) {
             console.log(msg);
             event.preventDefault();
+        },
+        updateMiddleName(event) {
+            this.middlename = event.target.value;
         },
     },
 }).mount("#app");
