@@ -25,6 +25,10 @@
             <button v-on:click="reduce">Increment</button>
 
             <button @click="triggerMe('hi there',$event)">Trigger event</button>
+
+            <form action="" @submit.prevent="">
+                <button type="submit">Login</button>
+            </form>
         </div>
         <script src="vue.js"></script>
         <script src="app.js"></script>
