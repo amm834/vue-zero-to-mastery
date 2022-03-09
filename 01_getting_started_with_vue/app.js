@@ -9,8 +9,14 @@ const vm = Vue.createApp({
             count: 0,
             isPurple: false,
             textColor: "",
-            size: 200,
             mode: 1,
+            size: 200,
+            fruits: ["Orange", "Apple", "Lemon"],
+            users: [
+                { name: "Mg Mg" },
+                { name: "Hla Hla" },
+                { name: "Mya Mya" },
+            ],
         };
     },
     methods: {
@@ -27,6 +33,10 @@ const vm = Vue.createApp({
         },
         updateMiddleName(event) {
             this.middlename = event.target.value;
+        },
+        move() {
+            const first = this.fruits.shift();
+            this.fruits.push(first);
         },
     },
     computed: {
