@@ -19,5 +19,9 @@ const vm = Vue.createApp({
             console.log(event.target);
             this.count -= 1;
         },
+        triggerMe(msg, event) {
+            console.log(msg);
+            event.preventDefault();
+        },
     },
 }).mount("#app");
