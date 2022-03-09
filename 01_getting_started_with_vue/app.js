@@ -9,6 +9,7 @@ const vm = Vue.createApp({
             count: 0,
             isPurple: false,
             textColor: "",
+            size: 200,
         };
     },
     methods: {
@@ -33,6 +34,13 @@ const vm = Vue.createApp({
         },
         circle_classes() {
             return { purple: this.isPurple };
+        },
+        circle_sizes() {
+            return {
+                width: this.size + "px",
+                height: this.size + "px",
+                lineHeight: this.size + "px",
+            };
         },
     },
     watch: {

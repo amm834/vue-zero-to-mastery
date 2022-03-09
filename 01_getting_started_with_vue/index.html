@@ -62,7 +62,12 @@
                 <option value="text-dark">Dark</option>
                 <option value="text-blue">Blue</option>
             </select>
-            <div class="circle" :class="[circle_classes, textColor]">
+            <input type="number" v-model.number.trim="size" />
+            <div
+                class="circle"
+                :class="[circle_classes, textColor]"
+                :style="[circle_sizes]"
+            >
                 Hello World
             </div>
         </div>
