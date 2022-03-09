@@ -7,4 +7,5 @@ const vm = Vue.createApp({
     },
 }).mount("#app");
 
-console.log(vm);
+console.log(vm.firstName);
+console.log(vm.$data);
