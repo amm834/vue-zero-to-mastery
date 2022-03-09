@@ -7,12 +7,11 @@ const vm = Vue.createApp({
             url: "https://facebook.com",
             raw_data: "<h1>Hello</h1>",
             count: 0,
+            isPurple: false,
+            textColor: "",
         };
     },
     methods: {
-        fullname() {
-            return `${this.firstName} ${this.middlename} ${this.lastName}`;
-        },
         add() {
             this.count = this.count + 1;
         },
@@ -26,6 +25,21 @@ const vm = Vue.createApp({
         },
         updateMiddleName(event) {
             this.middlename = event.target.value;
+        },
+    },
+    computed: {
+        fullname() {
+            return `${this.firstName} ${this.middlename} ${this.lastName}`;
+        },
+        circle_classes() {
+            return { purple: this.isPurple };
+        },
+    },
+    watch: {
+        fullname(newVal, oldVal) {
+            setTimeout(() => {
+                this.firstName = "Jone";
+            }, 3000);
         },
     },
 }).mount("#app");

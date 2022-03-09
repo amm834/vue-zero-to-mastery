@@ -4,10 +4,31 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Vue Basices</title>
+        <style>
+            .circle {
+                width: 200px;
+                height: 200px;
+                color: white;
+                background: green;
+                margin-top: 50px;
+                text-align: center;
+                border-radius: 50%;
+                line-height: 200px;
+            }
+            .purple {
+                background: purple;
+            }
+            .text-dark {
+                color: black;
+            }
+            .text-blue {
+                color: blue;
+            }
+        </style>
     </head>
     <body>
         <div id="app">
-            {{ fullname() }}
+            {{ fullname }}
             <a :href="url">{{ url }}</a>
             <div v-html="raw_data" r></div>
             <hr />
@@ -17,7 +38,11 @@
                     v-model="firstName"
                     placeholder="first name"
                 />
-                <input type="text" v-model="lastName" placeholder="last name" />
+                <input
+                    type="text"
+                    v-model.lazy="lastName"
+                    placeholder="last name"
+                />
             </div>
 
             <div>{{ count }}</div>
@@ -31,6 +56,15 @@
             </form>
 
             <input type="text" @keyup.enter="updateMiddleName" />
+
+            <input type="checkbox" v-model="isPurple" /> Change to purple
+            <select v-model="textColor">
+                <option value="text-dark">Dark</option>
+                <option value="text-blue">Blue</option>
+            </select>
+            <div class="circle" :class="[circle_classes, textColor]">
+                Hello World
+            </div>
         </div>
         <script src="vue.js"></script>
         <script src="app.js"></script>
