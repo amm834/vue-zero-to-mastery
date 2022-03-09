@@ -7,7 +7,7 @@ const vm = Vue.createApp({
     },
     methods: {
         fullname() {
-            return `${this.firstName} ${this.lastName}`.toUpperCase();
+            return `${this.firstName} ${this.lastName}`;
         },
     },
 }).mount("#app");

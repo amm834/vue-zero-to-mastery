@@ -6,7 +6,18 @@
         <title>Vue Basices</title>
     </head>
     <body>
-        <div id="app" v-cloak>{{fullname() }}</div>
+        <div id="app">
+            {{ fullname() }}
+            <hr />
+            <div>
+                <input
+                    type="text"
+                    v-model="firstName"
+                    placeholder="first name"
+                />
+                <input type="text" v-model="lastName" placeholder="last name" />
+            </div>
+        </div>
         <script src="vue.js"></script>
         <script src="app.js"></script>
     </body>
