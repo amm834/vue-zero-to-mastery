@@ -10,6 +10,7 @@ const vm = Vue.createApp({
             isPurple: false,
             textColor: "",
             size: 200,
+            mode: 1,
         };
     },
     methods: {

@@ -70,6 +70,16 @@
             >
                 Hello World
             </div>
+            <hr />
+            <h1>Conditional Rendering</h1>
+            <select v-model="mode">
+                <option value="1">v-if</option>
+                <option value="2">v-else-if</option>
+                <option value="3">v-else</option>
+            </select>
+            <div v-if="mode == 1">V if</div>
+            <div v-else-if="mode == 2">v else if</div>
+            <div v-else>v else</div>
         </div>
         <script src="vue.js"></script>
         <script src="app.js"></script>
