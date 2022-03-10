@@ -101,6 +101,11 @@ h1 {
 .fade-leave-to {
     opacity: 0;
     transition: all .25s linear;
+    position: absolute;
+}
+
+.fade-move{
+    transition: all .25s linear;
 }
 
 @keyframes zoom-in {
