@@ -1,7 +1,7 @@
 <template>
     <div>
         <greeting></greeting>
-        <user :age="age" @age-change="updateAge"></user>
+        <user :age="age" @age-change="updateAge" :updateAgeCb="updateAge"></user>
     </div>
 </template>
 
@@ -20,9 +20,12 @@ export default {
             age: 20,
         }
     },
-    methods:{
-        updateAge(){
+    methods: {
+        updateAge() {
             this.age += 1
+        },
+        updateAgeFn(num = 1) {
+            this.age += num
         }
     }
 }

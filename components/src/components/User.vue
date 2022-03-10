@@ -1,6 +1,7 @@
 <template>
 
     <button @click="onUpdateAge">Update age</button>
+    <button @click="updateAgeCb()">Update age callback</button>
 
     <div v-if="age > 25">
         He is {{ age }} years old
@@ -19,7 +20,8 @@ export default {
             validator(value) {
                 return value < 130
             }
-        }
+        },
+        updateAgeCb:Function
     },
     emits: ['age-change'],
     methods: {
