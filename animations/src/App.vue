@@ -9,18 +9,30 @@
             <h1 v-if="flage">Hello World</h1>
         </transition>-->
 
-    <transition
-        @before-enter="beforeEnter"
-        @enter="enter"
-        @after-enter="afterEnter"
-        @before-leave="beforeLeave"
-        @leave="leave"
-        @after-leave="afterLeave"
-        :css="true"
-        name="zoom"
-    >
-        <h1 v-if="flag">Animation with JavaScript</h1>
-    </transition>
+    <!--    <transition
+            @before-enter="beforeEnter"
+            @enter="enter"
+            @after-enter="afterEnter"
+            @before-leave="beforeLeave"
+            @leave="leave"
+            @after-leave="afterLeave"
+            :css="true"
+            name="zoom"
+        >
+            <h1 v-if="flag">Animation with JavaScript</h1>
+        </transition>-->
+    <button @click="addItem()">Add</button>
+    <ul>
+        <transition-group name="fade">
+            <li v-for="(number,index) in numbers"
+                @click="removeItem(index)"
+                :key="index"
+            >
+                {{ number }}
+            </li>
+        </transition-group>
+    </ul>
+
 
 </template>
 
@@ -29,7 +41,8 @@ export default {
     name: "App",
     data() {
         return {
-            flag: false
+            flag: false,
+            numbers: [1, 2, 3, 4, 5]
         }
     },
     methods: {
@@ -56,6 +69,14 @@ export default {
         },
         afterLeave(el) {
             console.log('after-leave', el)
+        },
+        addItem() {
+            const randomNumber = Math.floor(Math.random() * 100 + 1)
+            const index = Math.floor(Math.random() * this.numbers.length)
+            this.numbers.splice(index, 0, randomNumber)
+        },
+        removeItem(index) {
+            this.numbers.splice(index, 1)
         }
 
     }
@@ -74,12 +95,12 @@ h1 {
 }
 
 .fade-enter-active {
-    transition: all 3s linear;
+    transition: all .25s linear;
 }
 
 .fade-leave-to {
     opacity: 0;
-    transition: all 3s linear;
+    transition: all .25s linear;
 }
 
 @keyframes zoom-in {
