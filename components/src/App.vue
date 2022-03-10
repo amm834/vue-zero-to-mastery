@@ -1,14 +1,16 @@
 <template>
-	<p>{{ msg }}</p>
+    <div>
+        <greeting></greeting>
+    </div>
 </template>
 
 <script>
+import Greeting from "@/components/Greeting";
+
 export default {
-	name: "App",
-	data() {
-		return {
-			msg: "Hello Wrold",
-		};
-	},
-};
+    name: "App",
+    components: {
+        Greeting
+    },
+}
 </script>
