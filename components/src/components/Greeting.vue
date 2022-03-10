@@ -4,7 +4,8 @@
 
 <script>
 export default {
-    name: "GreetingText",
+    // eslint-disable-next-line vue/multi-word-component-names
+    name: "Greeting",
     data() {
         return {
             msg: 'Hello World'
@@ -13,8 +14,3 @@ export default {
 }
 </script>
 
-<style scoped>
-div {
-    color: red;
-}
-</style>
