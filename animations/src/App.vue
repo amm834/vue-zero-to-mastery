@@ -23,7 +23,11 @@
         </transition>-->
     <button @click="addItem()">Add</button>
     <ul>
-        <transition-group name="fade">
+        <transition-group
+            name="fade"
+            enter-active-class="animate__animated animate_flipInX"
+            leave-active-class="animate__animated animate_flipOutX"
+        >
             <li v-for="(number,index) in numbers"
                 @click="removeItem(index)"
                 :key="index"
@@ -104,7 +108,7 @@ h1 {
     position: absolute;
 }
 
-.fade-move{
+.fade-move {
     transition: all .25s linear;
 }
 
@@ -135,6 +139,10 @@ h1 {
 .zoom-leave-active {
     animation: zoom-out 1s linear forwards;
     transition: all 2s linear;
+}
+
+.animate_flipOutX{
+    position: absolute;
 }
 
 </style>
