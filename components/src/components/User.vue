@@ -1,13 +1,22 @@
 <template>
-    <div>
-        He is {{ age }} yerars old
+
+    <button @click="onUpdateAge">Update age</button>
+
+    <div v-if="age > 25">
+        He is {{ age }} years old
     </div>
+    <div v-else>You are not enought {{ age }} to see message</div>
 </template>
 
 <script>
 export default {
-    // eslint-disable-next-line vue/multi-word-component-names
-    name: "User",
-    props: ['age']
+    name: "UserComponent",
+    props: ['age'],
+    emits:['age-change'],
+    methods: {
+        onUpdateAge() {
+            this.$emit('age-change')
+        }
+    }
 }
 </script>
