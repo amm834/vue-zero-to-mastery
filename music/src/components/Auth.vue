@@ -161,7 +161,7 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapMutations, mapGetters,mapState } from "vuex";
 
 export default {
     name: "AuthModal",
@@ -169,9 +169,10 @@ export default {
         ...mapMutations(["toggleAuthModal"])
     },
     computed: {
-        authModalShow() {
-            return this.$store.getters.authModalShow;
-        }
+        ...mapState(["authModalShow"])
+        // authModalShow() {
+        //     return this.$store.getters.authModalShow;
+        // }
     }
 };
 </script>
