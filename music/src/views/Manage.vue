@@ -136,10 +136,16 @@
 </template>
 
 <script>
+import store from "@/store";
+
 export default {
     name: "AppManage",
-    beforeRouteEnter() {
-        console.log("BeforeRouteEnter");
+    beforeRouteEnter(to, from, next) {
+        if (store.state.isLoggedIn) {
+            next();
+        } else {
+            next({ name: "home" });
+        }
     }
 };
 </script>
