@@ -359,6 +359,9 @@ import AppHeader from "@/components/Header";
 import AuthModal from "@/components/Auth";
 
 export default {
-    components: { AuthModal, AppHeader }
+    components: { AuthModal, AppHeader },
+    created() {
+        this.$store.dispatch('init_login')
+    }
 };
 </script>
