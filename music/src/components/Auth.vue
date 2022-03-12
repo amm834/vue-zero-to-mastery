@@ -97,7 +97,7 @@
                                 class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
                                 placeholder="Enter Name"
                             />
-                            <error-message name="name" class="text-red-400"></error-message>
+                            <error-message name="name" class="text-red-600"></error-message>
                         </div>
                         <!-- Email -->
                         <div class="mb-3">
@@ -181,7 +181,7 @@ export default {
         return {
             tab: "login",
             schema: {
-                name: "required",
+                name: "required|min:3|max:16|alpha_spaces",
                 email: "",
                 age: "",
                 password: "",
