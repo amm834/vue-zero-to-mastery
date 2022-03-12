@@ -166,6 +166,8 @@ export default {
 
             this.reg_alert_varient = "bg-green-500";
             this.reg_alert_message = "Your account is being created";
+            this.$store.commit("toggleAuthModal");
+            window.reload();
         }
     }
 

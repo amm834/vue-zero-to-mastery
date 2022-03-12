@@ -13,13 +13,15 @@
                 <!-- Primary Navigation -->
                 <ul class="flex flex-row mt-1">
                     <!-- Navigation Links -->
-                    <li>
+                    <li v-if="!isLoggedIn">
                         <a class="px-2 text-white" href="#" @click.prevent="toggleAuthModal()"
                         >Login / Register</a
                         >
                     </li>
-                    <li>
+                    <li v-else>
                         <a class="px-2 text-white" href="#">Manage</a>
+
+                        <a class="px-2 text-white" href="" @click.prevent="logout()">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -28,13 +30,17 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapMutations, mapState, mapActions } from "vuex";
 
 export default {
     name: "AppHeader",
     methods: {
-       ...mapMutations(['toggleAuthModal']),
+        ...mapMutations(["toggleAuthModal"]),
+        ...mapActions(["logout"])
     },
+    computed: {
+        ...mapState(["isLoggedIn"])
+    }
 };
 </script>
 

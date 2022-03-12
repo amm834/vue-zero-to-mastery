@@ -82,6 +82,8 @@ export default {
 
             this.login_alert_varient = "bg-green-500";
             this.login_alert_message = "Your account is being created";
+            this.$store.commit("toggleAuthModal");
+            window.reload();
         }
     }
 };
