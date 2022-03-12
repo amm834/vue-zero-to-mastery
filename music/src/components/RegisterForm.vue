@@ -181,6 +181,8 @@ export default {
                 this.reg_alert_message = "Unexpected error occured";
                 return;
             }
+            this.$store.commit("toggleAuth");
+
             this.reg_alert_varient = "bg-green-500";
             this.reg_alert_message = "Your account is being created";
         }
