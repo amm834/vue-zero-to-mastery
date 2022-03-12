@@ -123,6 +123,7 @@
 
 <script>
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { createUser } from "../includes/firebase";
 
 export default {
     name: "RegisterForm",
@@ -162,7 +163,23 @@ export default {
                 this.reg_in_submission = false;
                 this.reg_alert_varient = "bg-red-500";
                 this.reg_alert_message = "Unexpected error occured";
-                console.log(error);
+                return;
+            }
+
+            try {
+                await createUser({
+                    name: values.name,
+                    email: values.email,
+                    password: values.password,
+                    country: values.country,
+                    age: values.age
+                });
+
+            } catch (error) {
+                this.reg_in_submission = false;
+                this.reg_alert_varient = "bg-red-500";
+                this.reg_alert_message = "Unexpected error occured";
+                return;
             }
             this.reg_alert_varient = "bg-green-500";
             this.reg_alert_message = "Your account is being created";
