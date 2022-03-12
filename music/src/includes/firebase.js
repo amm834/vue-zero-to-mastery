@@ -1,0 +1,22 @@
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+    apiKey: "AIzaSyCGVUj2EJBkpa5BGehP5YXQDSGQlvFGWQI",
+    authDomain: "music-24add.firebaseapp.com",
+    projectId: "music-24add",
+    storageBucket: "music-24add.appspot.com",
+    messagingSenderId: "326156841004",
+    appId: "1:326156841004:web:3da8c26cedf8bf7f1de189",
+    measurementId: "G-5XHT75NYBJ"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+// const analytics = getAnalytics(app);
+export default app

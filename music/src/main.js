@@ -5,6 +5,7 @@ import store from "./store";
 import "./assets/tailwind.css";
 import "./assets/main.css";
 import VeeValidate from "./includes/validate";
+import "./includes/firebase";
 
 const app = createApp(App);
 
