@@ -20,12 +20,6 @@ const db = getFirestore();
 
 // const analytics = getAnalytics(app);
 
-const users = collection(db, "users");
-
-async function createUser(data) {
-    return addDoc(users, data);
-}
-
 export {
-    createUser
-};
+    db
+}

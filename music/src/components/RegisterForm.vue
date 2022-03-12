@@ -122,8 +122,7 @@
 </template>
 
 <script>
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { createUser } from "../includes/firebase";
+
 
 export default {
     name: "RegisterForm",
@@ -154,11 +153,9 @@ export default {
             this.reg_alert_varient = "bg-blue-500";
             this.reg_alert_message = "Please wait! Your account is being created.";
 
-            const auth = getAuth();
 
             try {
-                const credential = await createUserWithEmailAndPassword(auth, values.email, values.password);
-                console.log(credential);
+                await this.$store.dispatch("register", values);
             } catch (error) {
                 this.reg_in_submission = false;
                 this.reg_alert_varient = "bg-red-500";
@@ -166,22 +163,6 @@ export default {
                 return;
             }
 
-            try {
-                await createUser({
-                    name: values.name,
-                    email: values.email,
-                    password: values.password,
-                    country: values.country,
-                    age: values.age
-                });
-
-            } catch (error) {
-                this.reg_in_submission = false;
-                this.reg_alert_varient = "bg-red-500";
-                this.reg_alert_message = "Unexpected error occured";
-                return;
-            }
-            this.$store.commit("toggleAuth");
 
             this.reg_alert_varient = "bg-green-500";
             this.reg_alert_message = "Your account is being created";
