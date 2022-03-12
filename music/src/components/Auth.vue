@@ -183,8 +183,9 @@
                                 name="tos"
                                 value="1"
                                 class="w-4 h-4 float-left -ml-6 mt-1 rounded"
+                                id="tos"
                             />
-                            <label class="inline-block"
+                            <label class="inline-block" for="tos"
                             >Accept terms of service</label
                             >
                             <error-message name="tos" class="text-red-600 block"></error-message>
@@ -217,9 +218,9 @@ export default {
                 email: "required|email",
                 age: "required|min_value:18|max_value:100",
                 password: "required|min:3|max:16",
-                confirm_password: "required|confirmed:@password",
+                confirm_password: "required|password_mismatch:@password",
                 country: "required|excluded:Antarctica",
-                tos: "required"
+                tos: "tos"
             },
             userData: {
                 country: "USA"
