@@ -67,15 +67,21 @@ export default {
         };
     },
     methods: {
-        login(values) {
+        async login(values) {
             this.login_in_submission = true;
             this.login_show_alert = true;
             this.login_alert_varient = "bg-blue-500";
             this.reg_alert_message = "Please wait! Your account is being logged in.";
+            try {
+                await this.$store.dispatch("login", values);
+            } catch (error) {
+                this.login_alert_varient = "bg-red-500";
+                this.login_alert_message = "Invalid Credentials";
+                return;
+            }
 
             this.login_alert_varient = "bg-green-500";
             this.login_alert_message = "Your account is being created";
-            console.log(values);
         }
     }
 };
