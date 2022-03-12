@@ -18,7 +18,11 @@ const routes = [
         name: "manage",
         // alias: "/manage",
         path: "/manage-music",
-        component: Manage
+        component: Manage,
+        beforeEnter: (to, from, next) => {
+            console.log("BeforeEnter");
+            next();
+        }
     },
     {
         path: "/manage",
@@ -34,6 +38,11 @@ const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
     routes,
     linkExactActiveClass: "text-yellow-500"
+});
+
+router.beforeEach((to, from, next) => {
+    console.log("Global guard");
+    next()
 });
 
 export default router;

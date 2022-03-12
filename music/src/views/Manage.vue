@@ -137,7 +137,10 @@
 
 <script>
 export default {
-    name: "AppManage"
+    name: "AppManage",
+    beforeRouteEnter() {
+        console.log("BeforeRouteEnter");
+    }
 };
 </script>
 
