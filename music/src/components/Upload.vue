@@ -31,7 +31,7 @@
                 </div>
                 <div class="flex h-4 overflow-hidden bg-gray-200 rounded">
                     <!-- Inner Progress Bar -->
-                    <div class="transition-all progress-bar bg-blue-400"
+                    <div class="transition-all progress-bar"
                          :class="upload.varient"
                          :style="{width: upload.current_progress + '%'}"
                     ></div>
@@ -43,8 +43,9 @@
 
 <script>
 
-import { ref, uploadBytesResumable } from "firebase/storage";
-import { storage } from "@/includes/firebase";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { auth, db, storage } from "@/includes/firebase";
+import { addDoc, collection, getFirestore } from "firebase/firestore";
 
 export default {
     name: "AppUpload",
@@ -76,6 +77,27 @@ export default {
                 uploadTask.on("state_changed", snapshot => {
                     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                     this.uploads[uploadIndex].current_progress = progress;
+                }, (error) => {
+                    this.uploads[uploadIndex].varient = "bg-red-500";
+                    this.uploads[uploadIndex].icon = "fas fa-times";
+                    this.uploads[uploadIndex].text_class = "text-red-400";
+                }, async () => {
+                    const song = {
+                        uid: auth.currentUser.uid,
+                        display_name: auth.currentUser.displayName,
+                        original_name: uploadTask.snapshot.ref.name,
+                        modified_name: uploadTask.snapshot.ref.name,
+                        genre: "",
+                        comment_count: 0
+                    };
+                    song.url = await getDownloadURL(songsRef);
+
+                    const songCollection = collection(db, "songs");
+                    await addDoc(songCollection, song);
+
+                    this.uploads[uploadIndex].varient = "bg-green-500";
+                    this.uploads[uploadIndex].icon = "fas fa-check";
+                    this.uploads[uploadIndex].text_class = "text-green-400";
                 });
 
             });
