@@ -56,8 +56,16 @@ export default {
         };
     },
     methods: {
-        upload() {
+        upload: function(event) {
             this.is_drageover = false;
+            const files = [...event.dataTransfer.files];
+            files.forEach(file => {
+                if (file.type !== "audio/mpeg") {
+                    return;
+                }
+                console.log("lol");
+            });
+
         }
     }
 };
