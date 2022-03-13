@@ -48,6 +48,10 @@
 </template>
 
 <script>
+
+import { ref, uploadBytes } from "firebase/storage";
+import { storage } from "@/includes/firebase";
+
 export default {
     name: "AppUpload",
     data() {
@@ -56,14 +60,20 @@ export default {
         };
     },
     methods: {
-        upload: function(event) {
+        upload(event) {
             this.is_drageover = false;
             const files = [...event.dataTransfer.files];
-            files.forEach(file => {
+            files.forEach(async file => {
                 if (file.type !== "audio/mpeg") {
                     return;
                 }
-                console.log("lol");
+                try {
+                    const songsRef = ref(storage, `songs/${file.name}`);
+                    const snapshot = await uploadBytes(songsRef, file);
+                    console.log(snapshot);
+                } catch (error) {
+                    console.log(error);
+                }
             });
 
         }
