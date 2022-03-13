@@ -140,13 +140,13 @@ import store from "@/store";
 
 export default {
     name: "AppManage",
-    beforeRouteEnter(to, from, next) {
-        if (store.state.isLoggedIn) {
-            next();
-        } else {
-            next({ name: "home" });
-        }
-    }
+    // beforeRouteEnter(to, from, next) {
+    //     if (store.state.isLoggedIn) {
+    //         next();
+    //     } else {
+    //         next({ name: "home" });
+    //     }
+    // }
 };
 </script>
 

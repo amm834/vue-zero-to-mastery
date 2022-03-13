@@ -47,7 +47,12 @@ export default {
     name: "AppHeader",
     methods: {
         ...mapMutations(["toggleAuthModal"]),
-        ...mapActions(["logout"])
+        logout() {
+            this.$store.dispatch("logout");
+            if (this.$route.meta.requiresAuth) {
+                this.$router.push({ name: "home" });
+            }
+        }
     },
     computed: {
         ...mapState(["isLoggedIn"])
