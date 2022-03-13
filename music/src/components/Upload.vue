@@ -23,24 +23,15 @@
             </div>
             <hr class="my-6" />
             <!-- Progess Bars -->
-            <div class="mb-4">
+            <div class="mb-4" v-for="upload in uploads" :key="upload.name">
                 <!-- File Name -->
-                <div class="font-bold text-sm">Just another song.mp3</div>
+                <div class="font-bold text-sm">{{ upload.name }}</div>
                 <div class="flex h-4 overflow-hidden bg-gray-200 rounded">
                     <!-- Inner Progress Bar -->
-                    <div class="transition-all progress-bar bg-blue-400" style="width: 75%"></div>
-                </div>
-            </div>
-            <div class="mb-4">
-                <div class="font-bold text-sm">Just another song.mp3</div>
-                <div class="flex h-4 overflow-hidden bg-gray-200 rounded">
-                    <div class="transition-all progress-bar bg-blue-400" style="width: 35%"></div>
-                </div>
-            </div>
-            <div class="mb-4">
-                <div class="font-bold text-sm">Just another song.mp3</div>
-                <div class="flex h-4 overflow-hidden bg-gray-200 rounded">
-                    <div class="transition-all progress-bar bg-blue-400" style="width: 55%"></div>
+                    <div class="transition-all progress-bar bg-blue-400"
+                         :class="bg-blue-400"
+                         :style="{width: upload.current_progress + '%'}"
+                    ></div>
                 </div>
             </div>
         </div>
@@ -49,31 +40,38 @@
 
 <script>
 
-import { ref, uploadBytes } from "firebase/storage";
+import { ref, uploadBytesResumable } from "firebase/storage";
 import { storage } from "@/includes/firebase";
 
 export default {
     name: "AppUpload",
     data() {
         return {
-            is_drageover: false
+            is_drageover: false,
+            uploads: []
         };
     },
     methods: {
         upload(event) {
             this.is_drageover = false;
             const files = [...event.dataTransfer.files];
-            files.forEach(async file => {
+            files.forEach(file => {
                 if (file.type !== "audio/mpeg") {
                     return;
                 }
-                try {
-                    const songsRef = ref(storage, `songs/${file.name}`);
-                    const snapshot = await uploadBytes(songsRef, file);
-                    console.log(snapshot);
-                } catch (error) {
-                    console.log(error);
-                }
+
+                const songsRef = ref(storage, `songs/${file.name}`);
+                const uploadTask = uploadBytesResumable(songsRef, file);
+                this.uploads.push({
+                    task: uploadTask,
+                    current_progress: 0,
+                    name: file.name
+                });
+                uploadTask.on("state_changed", snapshot => {
+                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log("Upload is " + progress + "% done");
+                });
+
             });
 
         }
