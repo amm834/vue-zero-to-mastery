@@ -48,10 +48,13 @@ export default {
     methods: {
         ...mapMutations(["toggleAuthModal"]),
         logout() {
-            this.$store.dispatch("logout");
-            if (this.$route.meta.requiresAuth) {
-                this.$router.push({ name: "home" });
-            }
+            this.$store.dispatch("logout", {
+                route: this.$route,
+                router: this.$router
+            });
+            // if (this.$route.meta.requiresAuth) {
+            //     this.$router.push({ name: "home" });
+            // }
         }
     },
     computed: {

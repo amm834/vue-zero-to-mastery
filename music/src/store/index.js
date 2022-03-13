@@ -42,9 +42,13 @@ export default createStore({
             await signInWithEmailAndPassword(getAuth(), payload.email, payload.password);
             commit("toggleAuth");
         },
-        async logout({ commit }) {
+        async logout({ commit }, { payload }) {
             await signOut(getAuth());
             commit("toggleAuth");
+
+            if (payload.route.meta.requiresAuth) {
+                payload.router.push({ name: "home" });
+            }
         }
     }
 });
