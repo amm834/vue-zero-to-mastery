@@ -101,7 +101,7 @@
 
 <script>
 import store from "@/store";
-import AppUpload from "@/views/Upload";
+import AppUpload from "@/components/Upload";
 
 export default {
     name: "AppManage",

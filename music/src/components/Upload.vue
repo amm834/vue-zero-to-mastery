@@ -9,7 +9,16 @@
             <div
                 class="w-full px-10 py-20 rounded text-center cursor-pointer border border-dashed
                 border-gray-400 text-gray-400 transition duration-500 hover:text-white
-                hover:bg-green-400 hover:border-green-400 hover:border-solid">
+                hover:bg-green-400 hover:border-green-400 hover:border-solid"
+                :class="{'bg-green-500 border-green-400 border-solid':is_drageover}"
+                @drag.prevent.stop=""
+                @dragstart.prevent.stop=""
+                @dragend.prevent.stop="is_drageover = false"
+                @dragleave.prevent.stop="is_drageover = false"
+                @dragover.prevent.stop="is_drageover = true"
+                @dragenter.prevent.stop="is_drageover = true"
+                @drop.prevent.stop="upload"
+            >
                 <h5>Drop your files here</h5>
             </div>
             <hr class="my-6" />
@@ -40,7 +49,17 @@
 
 <script>
 export default {
-    name: "AppUpload"
+    name: "AppUpload",
+    data() {
+        return {
+            is_drageover: false
+        };
+    },
+    methods: {
+        upload() {
+            this.is_drageover = false;
+        }
+    }
 };
 </script>
 
