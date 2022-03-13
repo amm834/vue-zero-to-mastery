@@ -29,7 +29,7 @@
                 <div class="flex h-4 overflow-hidden bg-gray-200 rounded">
                     <!-- Inner Progress Bar -->
                     <div class="transition-all progress-bar bg-blue-400"
-                         :class="bg-blue-400"
+                         :class="'bg-blue-400'"
                          :style="{width: upload.current_progress + '%'}"
                     ></div>
                 </div>
@@ -62,14 +62,14 @@ export default {
 
                 const songsRef = ref(storage, `songs/${file.name}`);
                 const uploadTask = uploadBytesResumable(songsRef, file);
-                this.uploads.push({
+                const uploadIndex = this.uploads.push({
                     task: uploadTask,
                     current_progress: 0,
                     name: file.name
-                });
+                }) - 1;
                 uploadTask.on("state_changed", snapshot => {
                     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    console.log("Upload is " + progress + "% done");
+                    this.uploads[uploadIndex].current_progress = progress;
                 });
 
             });
