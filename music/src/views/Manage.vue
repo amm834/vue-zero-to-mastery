@@ -3,7 +3,7 @@
     <section class="container mx-auto mt-6">
         <div class="md:grid md:grid-cols-3 md:gap-4">
             <div class="col-span-1">
-                <app-upload ref="upload"></app-upload>
+                <app-upload></app-upload>
             </div>
             <div class="col-span-2">
                 <div class="bg-white rounded border border-gray-200 relative flex flex-col">
@@ -102,10 +102,18 @@
 <script>
 import store from "@/store";
 import AppUpload from "@/components/Upload";
+import { db, auth } from "@/includes/firebase";
+import { collection, where, query } from "firebase/firestore";
 
 export default {
     name: "AppManage",
     components: { AppUpload },
+    created() {
+        const songsRef = collection(db, "songs");
+        const q = query(songsRef, where("uid", "==", auth.currentUser.uid));
+        console.log(q);
+
+    }
     // beforeRouteLeave(to, from, next) {
     //     this.$refs.upload.cancelUploads();
     // }
@@ -119,6 +127,3 @@ export default {
 };
 </script>
 
-<style scoped>
-
-</style>
