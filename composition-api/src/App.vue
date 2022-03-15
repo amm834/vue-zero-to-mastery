@@ -18,13 +18,14 @@ import Alert from "./components/Alert.vue";
 
 export default {
   name: "App",
-  setup() {
+  setup(props) {
     onBeforeMount(() => {
       console.log("onBeforeMount()");
     });
     onMounted(() => {
       console.log("onMounted()");
     });
+
     let num = ref(0);
     const increment = () => num.value++;
     const user = reactive({
@@ -46,7 +47,7 @@ export default {
       phrase,
       reversePhrase,
       double,
-      user
+      user,
     };
   },
   components: { Alert }
