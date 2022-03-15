@@ -24,6 +24,7 @@ specifiers:
   eslint-plugin-vue: ^8.0.3
   firebase: ^9.6.8
   jest: ^27.0.5
+  nprogress: ^0.2.0
   postcss: ^8.4.8
   tailwindcss: ^3.0.23
   vee-validate: ^4.5.8
@@ -37,6 +38,7 @@ dependencies:
   '@vue/eslint-config-standard': 6.1.0_ec17beda89bd80bef1b205de5e10fe9f
   core-js: 3.21.1
   firebase: 9.6.8
+  nprogress: 0.2.0
   vee-validate: 4.5.8_vue@3.2.31
   vue: 3.2.31
   vue-router: 4.0.14_vue@3.2.31
@@ -7315,6 +7317,10 @@ packages:
     dependencies:
       path-key: 3.1.1
     dev: true
+
+  /nprogress/0.2.0:
+    resolution: {integrity: sha1-y480xTIT2JVyP8urkH6UIq28r7E=}
+    dev: false
 
   /nth-check/2.0.1:
     resolution: {integrity: sha512-it1vE95zF6dTT9lBsYbxvqh0Soy4SPowchj0UBGj/V6cTPnXXtQOPUbhZ6CmGzAD/rW22LQK6E96pcdJXk4A4w==}

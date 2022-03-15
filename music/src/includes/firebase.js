@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { getFirestore, collection, addDoc, query, where, getDocs } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 // import { getAnalytics } from "firebase/analytics";
@@ -22,6 +22,10 @@ const db = getFirestore();
 const auth = getAuth();
 // const analytics = getAnalytics(app);
 const storage = getStorage(app);
+
+// db.enablePersistence()
+
+
 export {
     db,
     auth,

@@ -2,7 +2,11 @@
     <div class="bg-gray-100 font-sans pb-24">
         <app-header></app-header>
 
-        <router-view></router-view>
+        <router-view v-slot="{Component}">
+            <transition name="fade" mode="out-in">
+                <component :is="Component"></component>
+            </transition>
+        </router-view>
         <!-- Player -->
         <div
             class="fixed bottom-0 left-0 bg-white p-5 pb-4 text-left align-top w-full h-16"
@@ -74,3 +78,18 @@ export default {
     }
 };
 </script>
+
+<style>
+.fade-enter-from {
+    opacity: 0;
+}
+
+.fade-enter-active {
+    transition: all 0.5s linear;
+}
+
+.fade-leave-to {
+    transition: all 0.5s linear;
+    opacity: 0;
+}
+</style>

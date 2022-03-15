@@ -60,7 +60,17 @@ export default {
     },
     methods: {
         upload(event) {
-
+        if(!navigator.onLine){
+            this.uploads.push({
+                task: uploadTask,
+                current_progress: 0,
+                name: file.name,
+                varient: "bg-red-400",
+                icon: "fas fs-spinner fs-spin",
+                text_class: ""
+            })
+            return;
+        }
             this.is_drageover = false;
             const files = event.dataTransfer ? [...event.dataTransfer.files] : [...event.target.files];
             files.forEach(file => {
