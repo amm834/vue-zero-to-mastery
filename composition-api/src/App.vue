@@ -11,11 +11,20 @@
   </main>
 </template>
 
-<script>import { computed, reactive, ref, toRefs, watch } from "vue";
+<script>import { computed, onBeforeMount, onMounted, reactive, ref, toRefs, watch, watchEffect } from "vue";
 
 export default {
   name: "App",
   setup() {
+
+    onBeforeMount(() => {
+      console.log('onBeforeMount()');
+    })
+
+    onMounted(() => {
+      console.log('onMounted()');
+    })
+
     let num = ref(0);
     const increment = () => num.value++;
     const user = reactive({
@@ -29,7 +38,7 @@ export default {
     let phrase = ref("")
     let reversePhrase = ref("")
 
-    watch(() => {
+    watchEffect(() => {
       reversePhrase.value = phrase.value.split("").reverse().join("")
     })
 
