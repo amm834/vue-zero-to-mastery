@@ -13,8 +13,11 @@
   </main>
 </template>
 
-<script>import { computed, onBeforeMount, onMounted, reactive, ref, toRefs, watch, watchEffect } from "vue";
+<script>
+import { computed, onBeforeMount, onMounted, reactive, ref, toRefs, watch, watchEffect } from "vue";
 import Alert from "./components/Alert.vue";
+import { usePhrase } from './hooks/phrase'
+import { useNumber } from './hooks/number'
 
 export default {
   name: "App",
@@ -25,21 +28,13 @@ export default {
     onMounted(() => {
       console.log("onMounted()");
     });
-
-    let num = ref(0);
-    const increment = () => num.value++;
     const user = reactive({
-      name: "John"
+      name: "John",
     });
-    setTimeout(() => {
-      user.name = "Doe";
-    }, 2000);
-    let phrase = ref("");
-    let reversePhrase = ref("");
-    watchEffect(() => {
-      reversePhrase.value = phrase.value.split("").reverse().join("");
-    });
-    const double = computed(() => num.value * 2);
+    const { phrase, reversePhrase } = usePhrase()
+    const { num, increment, double } = useNumber()
+
+
     return {
       num,
       increment,
